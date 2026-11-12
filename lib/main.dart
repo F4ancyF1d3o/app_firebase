@@ -45,19 +45,31 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
         brightness: Brightness.light,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFFF9100),
+          seedColor: const Color(0xFF4F46E5),
           brightness: Brightness.light,
         ),
-        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+        scaffoldBackgroundColor: const Color(0xFFF3F6FF),
+        cardTheme: CardThemeData(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+        ),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFFF9100),
+          seedColor: const Color(0xFF8B5CF6),
           brightness: Brightness.dark,
         ),
-        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        scaffoldBackgroundColor: const Color(0xFF070B17),
+        cardTheme: CardThemeData(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+        ),
       ),
       home: FirebaseStatusScreen(
         onToggleTheme: _toggleTheme,
@@ -214,8 +226,8 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Firebase Firestore',
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+          'NEXUS PANEL',
+          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -238,18 +250,17 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
       ),
       body: Stack(
         children: [
-          // Background ambient decorative orbs
           Positioned(
-            top: -60,
+            top: -90,
             right: -60,
             child: Container(
-              width: 220,
-              height: 220,
+              width: 260,
+              height: 260,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFFFF9100).withValues(alpha: isDark ? 0.18 : 0.12),
+                    const Color(0xFF8B5CF6).withValues(alpha: isDark ? 0.25 : 0.18),
                     Colors.transparent,
                   ],
                 ),
@@ -257,185 +268,192 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
             ),
           ),
           Positioned(
-            bottom: -60,
+            bottom: -80,
             left: -60,
             child: Container(
-              width: 220,
-              height: 220,
+              width: 240,
+              height: 240,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFF10B981).withValues(alpha: isDark ? 0.15 : 0.10),
+                    const Color(0xFF22D3EE).withValues(alpha: isDark ? 0.18 : 0.12),
                     Colors.transparent,
                   ],
                 ),
               ),
             ),
           ),
-
-          // Main Scrollable Area
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 480),
+                  constraints: const BoxConstraints(maxWidth: 500),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Badge
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 14,
-                          vertical: 6,
-                        ),
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
-                          color: isDark
-                              ? const Color(0xFF064E3B).withValues(alpha: 0.5)
-                              : const Color(0xFFDCFCE7),
-                          borderRadius: BorderRadius.circular(30),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: isDark
+                                ? [
+                                    const Color(0xFF111827),
+                                    const Color(0xFF172554),
+                                  ]
+                                : [
+                                    const Color(0xFFEEF2FF),
+                                    const Color(0xFFE0F2FE),
+                                  ],
+                          ),
+                          borderRadius: BorderRadius.circular(28),
                           border: Border.all(
-                            color: const Color(0xFF10B981).withValues(alpha: 0.4),
+                            color: isDark
+                                ? const Color(0xFF334155)
+                                : const Color(0xFFCBD5E1),
                             width: 1,
                           ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: isDark
+                                  ? Colors.black.withValues(alpha: 0.3)
+                                  : const Color(0xFF4F46E5).withValues(alpha: 0.12),
+                              blurRadius: 24,
+                              offset: const Offset(0, 12),
+                            ),
+                          ],
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF10B981),
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0xFF10B981),
-                                    blurRadius: 6,
-                                    spreadRadius: 1,
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 6,
                                   ),
-                                ],
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF4F46E5).withValues(alpha: 0.12),
+                                    borderRadius: BorderRadius.circular(999),
+                                  ),
+                                  child: const Text(
+                                    'LIVE / FIRESTORE',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w800,
+                                      letterSpacing: 1.1,
+                                      color: Color(0xFF4F46E5),
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                Icon(
+                                  Icons.cloud_done_rounded,
+                                  color: isDark ? Colors.white70 : const Color(0xFF1E293B),
+                                  size: 22,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 18),
+                            AnimatedBuilder(
+                              animation: _pulseController,
+                              builder: (context, child) {
+                                return Transform.scale(
+                                  scale: _pulseScale.value,
+                                  child: Container(
+                                    width: 84,
+                                    height: 84,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Color(0xFF8B5CF6),
+                                          Color(0xFF3B82F6),
+                                          Color(0xFF22D3EE),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: const Color(0xFF8B5CF6)
+                                              .withValues(alpha: _glowOpacity.value),
+                                          blurRadius: 30,
+                                          spreadRadius: 4,
+                                          offset: const Offset(0, 10),
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Icon(
+                                      Icons.dashboard_customize_rounded,
+                                      size: 38,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 18),
+                            Text(
+                              'Control de clientes',
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -0.6,
+                                color: isDark ? Colors.white : const Color(0xFF0F172A),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(height: 6),
                             Text(
-                              count > 0
-                                  ? 'CONECTADO • $count USUARIOS EN FIRESTORE'
-                                  : 'CONECTADO A FIREBASE',
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 0.8,
-                                color: Color(0xFF059669),
+                              'Sincronización activa con Cloud Firestore • colección "usuarios"',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: isDark ? Colors.white70 : const Color(0xFF475569),
                               ),
+                            ),
+                            const SizedBox(height: 18),
+                            Row(
+                              children: [
+                                _buildMetricChip(
+                                  label: 'Usuarios',
+                                  value: '$count',
+                                  isDark: isDark,
+                                  icon: Icons.person_rounded,
+                                ),
+                                const SizedBox(width: 10),
+                                _buildMetricChip(
+                                  label: 'Estado',
+                                  value: _isLoading ? 'Cargando' : 'Online',
+                                  isDark: isDark,
+                                  icon: Icons.signal_cellular_4_bar_rounded,
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 18),
-
-                      // Animated Flame
-                      AnimatedBuilder(
-                        animation: _pulseController,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: _pulseScale.value,
-                            child: Container(
-                              width: 88,
-                              height: 88,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color(0xFFFFB300),
-                                    Color(0xFFFF8F00),
-                                    Color(0xFFFF5722),
-                                  ],
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFFFF5722)
-                                        .withValues(alpha: _glowOpacity.value),
-                                    blurRadius: 26,
-                                    spreadRadius: 3,
-                                    offset: const Offset(0, 6),
-                                  ),
-                                ],
-                              ),
-                              child: const Icon(
-                                Icons.local_fire_department_rounded,
-                                size: 48,
-                                color: Colors.white,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 16),
-
-                      Text(
-                        '¡Firebase Conectado!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w800,
-                          letterSpacing: -0.5,
-                          color: isDark ? Colors.white : const Color(0xFF0F172A),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Colección Firestore: "usuarios"',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          color: isDark
-                              ? const Color(0xFF94A3B8)
-                              : const Color(0xFF64748B),
-                        ),
-                      ),
-                      const SizedBox(height: 22),
-
-                      // Main Card showing Users from Firestore
+                      const SizedBox(height: 20),
                       _buildFirestoreContent(isDark),
-
                       const SizedBox(height: 18),
-
-                      // Connection Details Card
                       _buildProjectDetailsCard(isDark, projectId),
-
-                      const SizedBox(height: 18),
-
-                      // Footer
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.cloud_done_rounded,
-                            size: 14,
-                            color: isDark
-                                ? const Color(0xFF64748B)
-                                : const Color(0xFF94A3B8),
+                      const SizedBox(height: 16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Última actualización: $_lastSyncTime',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: isDark ? Colors.white54 : const Color(0xFF64748B),
                           ),
-                          const SizedBox(width: 6),
-                          Flexible(
-                            child: Text(
-                              'Datos leídos directamente desde Google Cloud Firestore',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: isDark
-                                    ? const Color(0xFF64748B)
-                                    : const Color(0xFF94A3B8),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
@@ -448,12 +466,71 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
     );
   }
 
+  Widget _buildMetricChip({
+    required String label,
+    required String value,
+    required bool isDark,
+    required IconData icon,
+  }) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: isDark ? const Color(0xFF0F172A) : Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0),
+            width: 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: const Color(0xFF4F46E5).withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(icon, size: 16, color: const Color(0xFF4F46E5)),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: isDark ? Colors.white54 : const Color(0xFF64748B),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    value,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      color: isDark ? Colors.white : const Color(0xFF0F172A),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildFirestoreContent(bool isDark) {
     if (_isLoading) {
       return Container(
-        padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1E293B).withValues(alpha: 0.9) : Colors.white,
+          color: isDark ? const Color(0xFF111827) : Colors.white,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0),
@@ -466,13 +543,13 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
               height: 32,
               child: CircularProgressIndicator(
                 strokeWidth: 2.8,
-                valueColor: AlwaysStoppedAnimation(Color(0xFFFF9100)),
+                valueColor: AlwaysStoppedAnimation(Color(0xFF4F46E5)),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 14),
             Text(
               'Consultando usuarios en Firestore...',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
           ],
         ),
@@ -483,7 +560,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: const Color(0xFFEF4444).withValues(alpha: 0.1),
+          color: const Color(0xFFEF4444).withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: const Color(0xFFEF4444).withValues(alpha: 0.3)),
         ),
@@ -511,7 +588,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
               icon: const Icon(Icons.refresh_rounded, size: 18),
               label: const Text('Reintentar conexión'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFF8F00),
+                backgroundColor: const Color(0xFF4F46E5),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
@@ -523,40 +600,35 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
 
     return Column(
       children: [
-        // Header bar with count and sync time
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Usuarios Registrados (${_usuarios.length})',
+              'Usuarios registrados',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w800,
                 color: isDark ? Colors.white : const Color(0xFF0F172A),
               ),
             ),
-            Row(
-              children: [
-                Icon(
-                  Icons.schedule_rounded,
-                  size: 13,
-                  color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: const Color(0xFF4F46E5).withValues(alpha: isDark ? 0.18 : 0.08),
+                borderRadius: BorderRadius.circular(999),
+              ),
+              child: Text(
+                '${_usuarios.length}',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: isDark ? Colors.white : const Color(0xFF4F46E5),
                 ),
-                const SizedBox(width: 4),
-                Text(
-                  _lastSyncTime,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),
         const SizedBox(height: 12),
-
-        // List of User Cards
         ..._usuarios.map((usuario) => _buildUserCard(isDark, usuario)),
       ],
     );
@@ -578,19 +650,19 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E293B).withValues(alpha: 0.95) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        color: isDark ? const Color(0xFF111827) : Colors.white,
+        borderRadius: BorderRadius.circular(22),
         border: Border.all(
           color: isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0),
-          width: 1.2,
+          width: 1,
         ),
         boxShadow: [
           BoxShadow(
             color: isDark
-                ? Colors.black.withValues(alpha: 0.25)
-                : const Color(0xFF0F172A).withValues(alpha: 0.04),
-            blurRadius: 14,
-            offset: const Offset(0, 5),
+                ? Colors.black.withValues(alpha: 0.18)
+                : const Color(0xFF4F46E5).withValues(alpha: 0.05),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
@@ -599,18 +671,17 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
         children: [
           Row(
             children: [
-              // Avatar
               Container(
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFFF9100), Color(0xFFFF5722)],
+                    colors: [Color(0xFF8B5CF6), Color(0xFF3B82F6)],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFFFF5722).withValues(alpha: 0.25),
+                      color: const Color(0xFF8B5CF6).withValues(alpha: 0.25),
                       blurRadius: 10,
                       offset: const Offset(0, 3),
                     ),
@@ -628,8 +699,6 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
                 ),
               ),
               const SizedBox(width: 14),
-
-              // Name and Account Number
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -646,7 +715,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFF9100).withValues(alpha: isDark ? 0.2 : 0.12),
+                        color: const Color(0xFF4F46E5).withValues(alpha: isDark ? 0.18 : 0.08),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
@@ -654,7 +723,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
-                          color: isDark ? const Color(0xFFFFB300) : const Color(0xFFD97706),
+                          color: isDark ? const Color(0xFFA5B4FC) : const Color(0xFF4F46E5),
                         ),
                       ),
                     ),
@@ -663,12 +732,9 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
               ),
             ],
           ),
-
           const SizedBox(height: 14),
           const Divider(height: 1, thickness: 0.6),
           const SizedBox(height: 10),
-
-          // Email Row
           Row(
             children: [
               Icon(
@@ -696,10 +762,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
               ),
             ],
           ),
-
           const SizedBox(height: 6),
-
-          // Document ID Row
           Row(
             children: [
               Icon(
@@ -738,7 +801,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E293B).withValues(alpha: 0.9) : Colors.white,
+        color: isDark ? const Color(0xFF111827) : Colors.white,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
           color: isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0),
@@ -750,7 +813,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
           _buildInfoRow(
             isDark: isDark,
             icon: Icons.folder_special_rounded,
-            iconColor: const Color(0xFFFF9100),
+            iconColor: const Color(0xFF4F46E5),
             label: 'ID de Proyecto Firebase',
             value: projectId,
             trailing: IconButton(
@@ -764,16 +827,16 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
           _buildInfoRow(
             isDark: isDark,
             icon: Icons.table_chart_rounded,
-            iconColor: const Color(0xFF10B981),
+            iconColor: const Color(0xFF22D3EE),
             label: 'Base de Datos',
-            value: 'Cloud Firestore (Colección "usuarios")',
+            value: 'Cloud Firestore • colección "usuarios"',
           ),
           const Divider(height: 20, thickness: 0.8),
           _buildInfoRow(
             isDark: isDark,
             icon: _getPlatformIcon(),
             iconColor: const Color(0xFF3B82F6),
-            label: 'Plataforma en Ejecución',
+            label: 'Plataforma',
             value: _getPlatformName(),
           ),
         ],
@@ -826,7 +889,7 @@ class _FirebaseStatusScreenState extends State<FirebaseStatusScreen>
             ],
           ),
         ),
-        ?trailing,
+        trailing ?? const SizedBox.shrink(),
       ],
     );
   }
